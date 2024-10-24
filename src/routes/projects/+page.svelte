@@ -1,4 +1,5 @@
 <body>
+
     
 
     <main>
@@ -52,5 +53,4 @@
         </div>
     </main>
 
-    <script src="/global.js" type="module"></script>
 </body>

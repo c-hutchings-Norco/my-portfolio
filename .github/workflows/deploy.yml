@@ -2,48 +2,47 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]  # This workflow triggers on pushes to the main branch
+    branches: ["main"]
 
 jobs:
   build_site:
-    runs-on: ubuntu-latest  # Use a GitHub-hosted runner
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # Check out the repository
+        uses: actions/checkout@v4
 
       - name: Install Node.js
-        uses: actions/setup-node@v4  # Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20  # Use Node.js version 20
-          cache: npm  # Cache npm dependencies
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: npm install  # Install project dependencies
+        run: npm install
 
-      - name: Build
+      - name: build
         env:
-          BASE_PATH: "/${{ github.event.repository.name }}"  # Set base path for routing
+          BASE_PATH: "/${{ github.event.repository.name }}"
         run: |
-          npm run build  # Run the build script
+          npm run build
 
       - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v3  # Upload the built files
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: "build/"  # Path to the build output
-          
+          path: "build/"
+
   deploy:
-    needs: build_site  # Ensure this job runs after build_site
-    runs-on: ubuntu-latest  # Use a GitHub-hosted runner
+    needs: build_site
+    runs-on: ubuntu-latest
     permissions:
-      pages: write  # Permissions to write to GitHub pages
-      id-token: write  # Permissions for ID token
+      pages: write
+      id-token: write
 
     environment:
-      name: github-pages  # Name of the environment
-      url: ${{ steps.deployment.outputs.page_url }}  # URL of the deployed site
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4  # Use the deploy-pages action to deploy
+        uses: actions/deploy-pages@v4
