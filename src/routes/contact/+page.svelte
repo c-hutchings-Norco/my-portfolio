@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caroline Hutchings: Contact</title>
-    <link rel="stylesheet" href="../style.css">
-</head>
 <body>
     <main>
-        <h1>Contact</h1>
+        <h1>Contact me</h1>
         <form action="mailto:chutchings@ucsd.edu" method="POST" enctype="text/plain">
             <label>
                 Your Email:
@@ -28,6 +20,5 @@
             <button>Send</button>
         </form>
     </main>
-    <script src="../global.js" type="module"></script>
+    <script src="/global.js" type="module"></script>
 </body>
-</html>

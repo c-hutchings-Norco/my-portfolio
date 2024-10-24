@@ -9,7 +9,7 @@ let pages = [
   { url: '/', title: 'Home' },
   { url: '/projects/', title: 'Projects' },
   { url: '/contact/', title: 'Contact' },
-  { url: '/cv.html', title: 'CV/Resume' },
+  { url: '/cv/', title: 'CV/Resume' },
   { url: 'https://github.com/c-hutchings-Norco', title: 'GitHub' }
 ];
 
@@ -19,28 +19,23 @@ function createNavigation() {
   let nav = document.createElement('nav');
   
   for (let p of pages) {
-    let url = p.url;
-    let title = p.title;
+      let url = p.url;
+      let title = p.title;
 
-    // Prepend '/Portfolio' to internal links
-    if (url.startsWith('/') && !url.startsWith('/Portfolio')) {
-      url = '/Portfolio' + url;
-    }
+      let a = document.createElement('a');
+      a.href = url;
+      a.textContent = title;
 
-    let a = document.createElement('a');
-    a.href = url;
-    a.textContent = title;
+      // Highlighting current page and opening external links in new tab
+      a.classList.toggle(
+          'current',
+          a.pathname === location.pathname
+      );
 
-    // Highlighting current page and opening external links in new tab
-    a.classList.toggle(
-      'current',
-      a.pathname === location.pathname
-    );
+      a.toggleAttribute('target', a.host !== location.host);
+      if (a.hasAttribute('target')) a.setAttribute('target', '_blank');
 
-    a.toggleAttribute('target', a.host !== location.host);
-    if (a.hasAttribute('target')) a.setAttribute('target', '_blank');
-
-    nav.append(a);
+      nav.append(a);
   }
 
   document.body.prepend(nav);
