@@ -1,5 +1,5 @@
 
-<script src="/global.js" type="module"></script>
+
 <main>
     <h1>Caroline Hutchings - CV</h1>
     
