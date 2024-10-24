@@ -5,5 +5,5 @@
         class="fit-picture"
         src="/images/Denmark.jpg" 
         alt="Caroline Hutchings with family in Denmark">
-    <p>I went to Denmark this summer to watch one of my favorite players!</p>
+    <p>I went to Denmark this summer to watch one of my favorite players! I loved Denmark!!</p>
 </main> 
