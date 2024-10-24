@@ -5,12 +5,12 @@ const config = {
     preprocess: preprocess(),
     kit: {
         adapter: adapter({
-            pages: 'build',  // Output directory for built files
-            assets: 'build', // Where static assets go
-            fallback: 'index.html' // Optional: fallback for SPA routing
+            pages: 'build',  // Output directory for your built files
+            assets: 'build', // Directory for static assets
+            fallback: null   // Set to 'index.html' if you want a fallback page
         }),
         paths: {
-            base: process.env.NODE_ENV === 'production' ? '/my-portfolio' : ''
+            base: process.env.NODE_ENV === 'production' ? '/my-portfolio' : '' // Change 'my-portfolio' to your repo name if applicable
         }
     }
 };
