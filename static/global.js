@@ -6,7 +6,7 @@ function $$(selector, context = document) {
 
 // Define pages array with correct URLs
 let pages = [
-  { url: 'https://c-hutchings-norco.github.io', title: 'Home' },
+  { url: 'https://c-hutchings-norco.github.io/my-portfolio/', title: 'Home' },
   { url: 'https://c-hutchings-norco.github.io/my-portfolio/projects/', title: 'Projects' },
   { url: 'https://c-hutchings-norco.github.io/my-portfolio/contact/', title: 'Contact' },
   { url: 'https://c-hutchings-norco.github.io/my-portfolio/cv/', title: 'CV/Resume' },
