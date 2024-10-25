@@ -18,4 +18,12 @@
                 <Project data={project} hLevel={3} />
             {/each}
         </div>
+        <style>
+            .projects.highlights {
+                margin-top: 2rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+        </style>
     </main>
