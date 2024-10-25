@@ -2,7 +2,7 @@
     import projects from '$lib/projects.json';
     </script>
     
-    <h1>My Projects</h1>
+    <h1>My Projects ({projects.length})</h1>
     
     <div class="projects">
       {#each projects as p}
