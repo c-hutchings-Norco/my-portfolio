@@ -1,85 +1,97 @@
-console.log('IT\'S ALIVE!');
+console.log("IT’S ALIVE!");
 
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-// Define pages array with correct URLs
+// Step 2: Automatic current page link
+let navLinks = $$("nav a");
+
+let currentLink = navLinks.find(
+  (a) => a.host === location.host && a.pathname === location.pathname
+);
+
+if (currentLink) {
+  currentLink.classList.add("current");
+}
+
+// Step 3: Automatic navigation menu
 let pages = [
-  { url: 'https://c-hutchings-norco.github.io/my-portfolio/', title: 'Home' },
+  { url: 'https://c-hutchings-norco.github.io/my-portfolio', title: 'Home' },
   { url: 'https://c-hutchings-norco.github.io/my-portfolio/projects/', title: 'Projects' },
   { url: 'https://c-hutchings-norco.github.io/my-portfolio/contact/', title: 'Contact' },
   { url: 'https://c-hutchings-norco.github.io/my-portfolio/cv/', title: 'CV/Resume' },
-  { url: 'https://github.com/c-hutchings-Norco', title: 'GitHub' }
+  { url: 'https://github.com/c-hutchings-Norco', title: 'GitHub' },
 ];
 
-const ARE_WE_HOME = document.documentElement.classList.contains('home');
+const ARE_WE_HOME = document.documentElement.classList.contains("home");
+let nav = document.createElement("nav");
+document.body.prepend(nav);
 
-function createNavigation() {
-  let nav = document.createElement('nav');
-  
-  for (let p of pages) {
-      let url = p.url;
-      let title = p.title;
+for (let p of pages) {
+  let url = p.url;
+  let title = p.title;
 
-      let a = document.createElement('a');
-      a.href = url;
-      a.textContent = title;
-
-      // Highlighting current page and opening external links in new tab
-      a.classList.toggle(
-          'current',
-          a.pathname === location.pathname
-      );
-
-      a.toggleAttribute('target', a.host !== location.host);
-      if (a.hasAttribute('target')) a.setAttribute('target', '_blank');
-
-      nav.append(a);
+  if (!ARE_WE_HOME && !url.startsWith("http")) {
+    url = "../" + url;
   }
 
-  document.body.prepend(nav);
+  let a = document.createElement("a");
+  a.href = url;
+  a.textContent = title;
+
+  // Highlight current page
+  a.classList.toggle(
+    "current",
+    a.host === location.host && a.pathname === location.pathname
+  );
+
+  // Open external links in a new tab
+  if (a.host !== location.host) {
+    a.target = "_blank";
+  }
+
+  nav.append(a);
 }
 
-function createColorSchemeSwitcher() {
-  document.body.insertAdjacentHTML(
-    'afterbegin',
-    `
-    <label class="color-scheme">
+// Step 4.2: Adding HTML for the dark mode switch
+document.body.insertAdjacentHTML(
+  'afterbegin',
+  `
+  <label class="color-scheme" style="position: absolute; top: 1rem; right: 1rem; font-size: 0.8rem;">
       Theme:
-      <select>
-        <option value="light dark">Automatic</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
+      <select id="theme-select">
+          <option value="light dark">Automatic</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
       </select>
-    </label>`
-  );
-}
+  </label>`
+);
+
+// Step 4.4: Actual theme change logic
+const select = document.getElementById('theme-select');
 
 function setColorScheme(colorScheme) {
   document.documentElement.style.setProperty('color-scheme', colorScheme);
-  const select = document.querySelector('.color-scheme select');
-  if (select) {
-    select.value = colorScheme;
+  if (colorScheme === "dark") {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
   }
-  localStorage.colorScheme = colorScheme;
+  localStorage.colorScheme = colorScheme; // Persist the preference
 }
 
-function setupColorSchemeSwitch() {
-  const select = document.querySelector('.color-scheme select');
-  
-  if ("colorScheme" in localStorage) {
-    setColorScheme(localStorage.colorScheme);
-  }
-  
-  select.addEventListener('input', function (event) {
-    setColorScheme(event.target.value);
-  });
-}
-
-// Call the functions when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-  createNavigation();
-  createColorSchemeSwitcher();
-  setupColorSchemeSwitch();
+select.addEventListener('input', function (event) {
+  const selectedValue = event.target.value;
+  setColorScheme(selectedValue);
 });
+
+// Step 4.5: Load user's preference
+if ("colorScheme" in localStorage) {
+  select.value = localStorage.colorScheme;
+  setColorScheme(localStorage.colorScheme);
+} else {
+  // Default to system preference
+  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  setColorScheme(prefersDarkScheme ? "dark" : "light");
+}
