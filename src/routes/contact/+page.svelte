@@ -20,5 +20,4 @@
             <button>Send</button>
         </form>
     </main>
-    <script src="/global.js" type="module"></script>
 </body>
