@@ -1,5 +1,5 @@
 <script>
-    import projects from 'my-portfolio/scr/lib/projects.json';
+    import projects from '$/lib/projects.json';
 </script>
 
 <main>
