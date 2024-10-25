@@ -3,6 +3,8 @@
     
 
     <main>
+        <script> import projects from '$lib/projects.json' ;</script>
+        <pre>{ JSON.stringify(projects, null, "\t") }</pre>
         <h1>Projects</h1>
         <div class="projects">
             <article>
