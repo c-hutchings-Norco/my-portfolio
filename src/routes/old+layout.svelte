@@ -39,7 +39,7 @@
   <nav>
     {#each pages as p}
       <a
-        href={p.url.startsWith('http') ? p.url : `${base}${p.url}`}
+        href={p.url}
         class:current={$page.url.pathname === p.url}
         target={p.url.startsWith('http') ? '_blank' : undefined}
       >
