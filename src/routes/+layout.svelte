@@ -4,10 +4,10 @@
     import { base } from '$app/paths';
   
     const pages = [
-      { url: '/', title: 'Home' },
-      { url: '/projects', title: 'Projects' },
-      { url: '/contact', title: 'Contact' },
-      { url: '/cv', title: 'CV/Resume' },
+      { url: 'my-portfolio/', title: 'Home' },
+      { url: 'my-portfolio/projects', title: 'Projects' },
+      { url: 'my-portfolio/contact', title: 'Contact' },
+      { url: 'my-portfolio/cv', title: 'CV/Resume' },
       { url: 'https://github.com/c-hutchings-Norco', title: 'GitHub' },
     ];
   
