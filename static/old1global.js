@@ -1,6 +1,3 @@
-// global.js
-console.log("IT’S ALIVE!");
-
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
@@ -16,44 +13,6 @@ if (currentLink) {
   currentLink.classList.add("current");
 }
 
-// Step 3: Automatic navigation menu
-let pages = [
-  { url: "https://c-hutchings-norco.github.io/my-portfolio/", title: "Home" },
-  { url: "https://c-hutchings-norco.github.io/my-portfolio//projects", title: "Projects" },
-  { url: "https://c-hutchings-norco.github.io/my-portfolio//contact", title: "Contact" },
-  { url: "https://c-hutchings-norco.github.io/my-portfolio//cv", title: "Resume" },
-  { url: "https://github.com/c-hutchings-Norco", title: "Github" },
-];
-
-const ARE_WE_HOME = document.documentElement.classList.contains("home");
-let nav = document.createElement("nav");
-document.body.prepend(nav);
-
-for (let p of pages) {
-  let url = p.url;
-  let title = p.title;
-
-  if (!ARE_WE_HOME && !url.startsWith("http")) {
-    url = "../" + url;
-  }
-
-  let a = document.createElement("a");
-  a.href = url;
-  a.textContent = title;
-
-  // Highlight current page
-  a.classList.toggle(
-    "current",
-    a.host === location.host && a.pathname === location.pathname
-  );
-
-  // Open external links in a new tab
-  if (a.host !== location.host) {
-    a.target = "_blank";
-  }
-
-  nav.append(a);
-}
 
 // Step 4.2: Adding HTML for the dark mode switch
 document.body.insertAdjacentHTML(
