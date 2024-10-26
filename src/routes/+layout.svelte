@@ -5,9 +5,9 @@
 
   const pages = [
     { url: '/', title: 'Home' },
-    { url: '/projects/', title: 'Projects' },
-    { url: '/contact/', title: 'Contact' },
-    { url: '/cv/', title: 'CV/Resume' },
+    { url: 'projects', title: 'Projects' },
+    { url: 'contact', title: 'Contact' },
+    { url: 'cv', title: 'CV/Resume' },
     { url: 'https://github.com/c-hutchings-Norco', title: 'GitHub' },
   ];
 
@@ -39,7 +39,7 @@
 <nav>
   {#each pages as p}
     <a
-      href={p.url.startsWith('http') ? p.url : `${base}${p.url}`}
+      href={p.url.startsWith('http') ? p.url : `${base}${p.url === '/' ? '' : p.url}`}
       class:current={$page.url.pathname === `${base}${p.url}`}
       target={p.url.startsWith('http') ? '_blank' : undefined}
       rel={p.url.startsWith('http') ? 'noopener noreferrer' : undefined}
