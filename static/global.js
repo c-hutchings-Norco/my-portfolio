@@ -19,9 +19,9 @@ if (currentLink) {
 // Step 3: Automatic navigation menu
 let pages = [
   { url: "https://c-hutchings-norco.github.io/my-portfolio/", title: "Home" },
-  { url: "https://c-hutchings-norco.github.io/my-portfolio//projects", title: "Projects" },
-  { url: "https://c-hutchings-norco.github.io/my-portfolio//contact", title: "Contact" },
-  { url: "https://c-hutchings-norco.github.io/my-portfolio//cv", title: "Resume" },
+  { url: "https://c-hutchings-norco.github.io/my-portfolio/projects", title: "Projects" },
+  { url: "https://c-hutchings-norco.github.io/my-portfolio/contact", title: "Contact" },
+  { url: "https://c-hutchings-norco.github.io/my-portfolio/cv", title: "Resume" },
   { url: "https://github.com/c-hutchings-Norco", title: "Github" },
 ];
 
