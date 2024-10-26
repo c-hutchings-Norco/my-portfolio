@@ -13,7 +13,7 @@ const config = {
       strict: false
     }),
     paths: {
-      base: dev ? '' : process.env.BASE_PATH,
+      base: dev ? '' : '/my-portfolio'
     },
     prerender: {
       entries: ['*']
