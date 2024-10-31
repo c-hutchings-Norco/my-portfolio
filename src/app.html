@@ -5,8 +5,13 @@
     <link rel="stylesheet" href="%sveltekit.assets%/style.css" />
     <script src="%sveltekit.assets%/global.js" type="module"></script>
     %sveltekit.head% 
+    <style>
+        :global(:root) {
+            color-scheme: light; 
+        }
+    </style>
 </head>
 <body data-sveltekit-preload-data="hover">
     <div style="display: contents">%sveltekit.body%</div>
-</body>
+</body> 
 </html>
