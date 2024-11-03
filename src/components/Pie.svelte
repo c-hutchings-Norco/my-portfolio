@@ -4,10 +4,9 @@
   import { createEventDispatcher } from 'svelte';
 
   export let pieDataArray = [];
-  export let selectedYear = null; // Store the currently selected year
+  export let selectedYear = ''; // Store the currently selected year
   const dispatch = createEventDispatcher();
 
-  // Watch for changes in selectedYear
   $: if (selectedYear) {
     updateWedges();
   }

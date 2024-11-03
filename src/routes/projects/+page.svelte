@@ -13,10 +13,16 @@
     }
 
     return projects.filter(project => {
+      if(searchText && selectedYear){
+        const matchesSearchText = project.title.toLowerCase().includes(searchText.toLowerCase());
+        const matchesSelectedYear = selectedYear !== '' && project.year == selectedYear;
+        return matchesSearchText && matchesSelectedYear;
+      }
+
       const matchesSearchText = project.title.toLowerCase().includes(searchText.toLowerCase());
       const matchesSelectedYear = selectedYear !== '' && project.year == selectedYear;
 
-      return matchesSearchText && matchesSelectedYear;
+      return searchText? matchesSearchText : matchesSelectedYear;
     });
   }
   const uniqueYears = [...new Set(projects.map(project => project.year))];
