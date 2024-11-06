@@ -4,7 +4,8 @@
   import { createEventDispatcher } from 'svelte';
 
   export let pieDataArray = [];
-  export let selectedYear = ''; // Store the currently selected year
+  export let selectedYear = '';
+  export let hoveredYear = ''; 
   const dispatch = createEventDispatcher();
 
   $: if (selectedYear) {
@@ -13,11 +14,9 @@
 
   // Function to update wedge styles based on selection
   function updateWedges() {
-      const paths = d3.selectAll('.arc path');
-      paths.attr('fill', d => {
-        return d.data.year === selectedYear ? d3.rgb(d3.schemeCategory10[d.index]).darker() : d3.schemeCategory10[d.index];
-      });
-    }
+    d3.selectAll('.arc path')
+      .attr('fill', d => d.data.year === selectedYear ? d3.color(d.data.color).darker() : d.data.color);
+  }
 
   onMount(() => {
     const width = 300;
@@ -33,9 +32,6 @@
     const g = svg.append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2})`);
 
-    // Define color scale
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
-    
     // Define pie and arc generators
     const pie = d3.pie().value(d => d.count);
     const arc = d3.arc().innerRadius(0).outerRadius(radius);
@@ -50,7 +46,7 @@
     // Add path for each arc
     arcs.append('path')
       .attr('d', arc)
-      .attr('fill', d => color(d.data.year))
+      .attr('fill', d => d.data.color) // Use the color property directly from the data
       .attr('tabindex', 0) // Make paths focusable for accessibility
       .attr('role', 'button') // Role for accessibility
       .attr('aria-label', d => `Year: ${d.data.year}, Count: ${d.data.count}`) // ARIA label
@@ -62,16 +58,18 @@
       .on('mouseover', function(event, d) {
         d3.select(this).attr('opacity', 0.7); // Highlight hovered wedge
         showTooltip(event, d.data.year);
+        hoveredYear = d.data.year;
       })
       .on('mouseout', function(event) {
         d3.select(this).attr('opacity', 1); // Reset opacity
         hideTooltip();
       });
-      arcs.append('text')
+
+    // Add text labels for each arc
+    arcs.append('text')
       .attr('transform', d => `translate(${arc.centroid(d)})`)
       .attr('dy', '.35em')
       .text(d => d.data.year);
-
 
     // Tooltip setup
     const tooltip = d3.select('body').append('div')
