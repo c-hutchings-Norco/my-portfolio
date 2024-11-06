@@ -1,13 +1,13 @@
 <script>
     export let data = [];
-
+    export let hoveredYear = '';
   </script>
   
   <div class="legend">
-    {#each data as { year, count }}
-      <div class="legend-item">
-        <div class="swatch" style="background-color: /* Set color based on year or another property */;"></div>
-        <span>{year}: {count} project{count > 1?'s':''} done</span>
+    {#each data as { year, count, color }}
+      <div class="legend-item" style="opacity: {hoveredYear === year ? 0.7 : 1};">
+        <div class="swatch" style="background-color: {color};"></div>
+        <span>{year}: {count} project{count > 1 ? 's' : ''} done</span>
       </div>
     {/each}
   </div>
