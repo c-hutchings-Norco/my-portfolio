@@ -2,16 +2,22 @@
     import { onMount } from 'svelte';
 
     let users = [];
+    let followers = 0;
+    let following = 0;
     let loading = true;
     let error = null;
 
     onMount(async () => {
         try {
-            const response = await fetch('https://jsonplaceholder.typicode.com/users');
+            const response = await fetch('https://api.github.com/users/c-hutchings-Norco');
             if (!response.ok) {
                 throw new Error('Failed to fetch users');
             }
-            users = await response.json();
+            const data = await response.json();
+            followers = data.followers;
+            following = data.following;
+
+            users = []; //await response.json();
         } catch (err) {
             error = err.message;
         } finally {
@@ -20,23 +26,18 @@
     });
 </script>
 
-<h2>Users</h2>
+<h2>Github Stats</h2>
 
 {#if loading}
     <p>Loading...</p>
 {:else if error}
     <p>Error: {error}</p>
 {:else}
-    <div class="user-grid">
-        {#each users as user}
-            <div class="user-card">
-                <h3>{user.name}</h3>
-                <p>Email: {user.email}</p>
-                <p>Phone: {user.phone}</p>
-                <p>Website: <a href={`http://${user.website}`} target="_blank">{user.website}</a></p>
-            </div>
-        {/each}
-    </div>
+    <div class="github-stats">
+        <p>Followers: {followers}</p>
+        <p>Following: {following}</p>
+    </div>    
+
 {/if}
 
 <style>
@@ -58,6 +59,10 @@
     .user-card:hover {
         transform: scale(1.05); 
     }
+    .github-stats {
+    font-size: 1.2em;
+    color: #333;
+  }
 
     @media (max-width: 600px) {
         .user-grid {
