@@ -10,6 +10,7 @@
     { url: "/projects", title: "Projects" },
     { url: "/contact", title: "Contact" },
     { url: "/cv", title: "CV/Resume" },
+    { url: "/analysis", title: "Project Analysis" },
     { url: "https://github.com/c-hutchings-Norco", title: "GitHub" },
   ];
 
