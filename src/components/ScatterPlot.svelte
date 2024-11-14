@@ -7,7 +7,7 @@
     let languageBreakdown = [];
     
     onMount(async () => {
-    const csvFilePath = "/build/code-analysis.csv";
+    const csvFilePath = "./code-analysis.csv";
     const data = await d3.csv(csvFilePath);
 
     // Filter out rows that don't represent programming languages or commit information

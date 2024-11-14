@@ -3,7 +3,7 @@
     import * as d3 from 'd3';
 
     // Path to your CSV file in the public folder
-    const csvFilePath = '/build/code-analysis.csv';
+    const csvFilePath = './code-analysis.csv';
 
     // Reactive variables to store stats
     let totalCommits = 0;

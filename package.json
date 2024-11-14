@@ -4,7 +4,7 @@
     "type": "module",
     "scripts": {
         "dev": "npm run analyze && vite dev",
-        "build": "vite build",
+        "build": "npm run analyze && vite build",
         "preview": "vite preview",
         "analyze": "node scripts/code_analysis.js"
     },

@@ -7,7 +7,7 @@ export default defineConfig({
 	server: {
 		fs: {
 		  allow: [
-			path.resolve(__dirname, 'build') // Allow Vite to serve from the build folder
+			path.resolve(__dirname, 'static') 
 		  ]
 		}
 	  }
