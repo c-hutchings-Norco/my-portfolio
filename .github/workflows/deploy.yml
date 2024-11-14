@@ -21,7 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Install cloc
       - name: Install cloc
         run: sudo apt-get install -y cloc
 
@@ -29,17 +28,17 @@ jobs:
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
-          npm run analyze && vite build
-          touch dist/.nojekyll  # Update to match your output directory
+          npm run analyze && npx vite build  # Using npx to run vite
+          touch dist/.nojekyll
 
       - name: Create 404.html for SPA routing
         run: |
-          cp dist/index.html dist/404.html  # Update to match your main file
+          cp dist/index.html dist/404.html
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/'  # This should match your output directory
+          path: 'dist/'
 
   deploy:
     needs: build_site
