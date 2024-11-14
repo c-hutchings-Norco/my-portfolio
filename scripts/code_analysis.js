@@ -51,7 +51,7 @@ const linesOfCode = countLines('./src'); // Adjust to your codebase path
 
 // Write to CSV
 const csvStream = csvWriter({ headers: true });
-const outputPath = 'build/code-analysis.csv';
+const outputPath = 'static/code-analysis.csv';
 const writeStream = fs.createWriteStream(outputPath);
 
 csvStream.pipe(writeStream);
