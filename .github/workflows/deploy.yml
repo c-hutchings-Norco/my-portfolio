@@ -12,12 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Uncomment if you're using pnpm
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v3
-      #   with:
-      #     version: 8
-
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,21 +21,25 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Install cloc
+      - name: Install cloc
+        run: sudo apt-get install -y cloc
+
       - name: Build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
-          npm run analyze && npm run build
-          touch build/.nojekyll
+          npm run analyze && vite build
+          touch dist/.nojekyll  # Update to match your output directory
 
       - name: Create 404.html for SPA routing
         run: |
-          cp build/index.html build/404.html  # Or app.html if that's your main file
+          cp dist/index.html dist/404.html  # Update to match your main file
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build/'  # This should match the output directory of your static site generator
+          path: 'dist/'  # This should match your output directory
 
   deploy:
     needs: build_site
