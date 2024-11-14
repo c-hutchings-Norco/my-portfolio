@@ -1,6 +1,9 @@
 <script>
     import Project from '$lib/Project.svelte';
     import projects from '$lib/projects.json';
+    import MetaAnalysis from '../components/MetaAnalysis.svelte';
+  import ScatterPlot from '../components/ScatterPlot.svelte';
+
     </script>
     
     <main>
@@ -18,6 +21,9 @@
                 <Project data={project} hLevel={3} />
             {/each}
         </div>
+
+        <MetaAnalysis />
+        <ScatterPlot />
         <style>
             .projects.highlights {
                 margin-top: 2rem;
