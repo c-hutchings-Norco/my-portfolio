@@ -24,6 +24,13 @@ jobs:
       - name: Install cloc
         run: sudo apt-get install -y cloc
 
+      # Debugging step: Checking node version and npm cache
+      - name: Debug Node.js and npm cache
+        run: |
+          node -v
+          npm cache verify
+          echo "Node.js and npm cache verified."
+
       - name: Build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
@@ -31,9 +38,24 @@ jobs:
           npm run analyze && npx vite build  # Using npx to run vite
           touch build/.nojekyll  # Adjusted to match the 'build' folder
 
+      # Debugging step: Confirming files created during build
+      - name: List Build Directory
+        run: |
+          echo "Listing files in build directory:"
+          ls -R build/
+
       - name: Create 404.html for SPA routing
         run: |
           cp build/index.html build/404.html  # Also adjusted to 'build'
+      
+      # Debugging step: Confirming 404.html creation
+      - name: Confirm 404.html
+        run: |
+          if [ -f build/404.html ]; then
+            echo "404.html created successfully."
+          else
+            echo "404.html creation failed."
+          fi
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
@@ -56,3 +78,9 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Debugging step: Checking final deployment status and logs
+      - name: Check Deployment Status
+        run: |
+          echo "Deployment URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "Deployment finished. Verify at the above URL."
