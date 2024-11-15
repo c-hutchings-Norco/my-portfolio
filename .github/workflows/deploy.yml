@@ -38,24 +38,25 @@ jobs:
           npm run analyze && npx vite build  # Using npx to run vite
           touch build/.nojekyll  # Adjusted to match the 'build' folder
 
-      # Debugging step: Confirming files created during build
-      - name: List Build Directory
+      # Debugging step: Confirming files in static directory and CSV file contents
+      - name: List Static Directory
         run: |
-          echo "Listing files in build directory:"
-          ls -R build/
+          echo "Listing files in static directory:"
+          ls -R static/
+      
+      - name: Display CSV Content
+        if: success()
+        run: |
+          if [ -f static/code-analysis.csv ]; then
+            echo "CSV file found. Displaying content:"
+            cat static/code-analysis.csv
+          else
+            echo "CSV file not found in static directory."
+          fi
 
       - name: Create 404.html for SPA routing
         run: |
           cp build/index.html build/404.html  # Also adjusted to 'build'
-      
-      # Debugging step: Confirming 404.html creation
-      - name: Confirm 404.html
-        run: |
-          if [ -f build/404.html ]; then
-            echo "404.html created successfully."
-          else
-            echo "404.html creation failed."
-          fi
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
