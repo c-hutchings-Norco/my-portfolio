@@ -4,6 +4,7 @@
         "year": "2024",
         "image": "images/BikeMap.jpg",
         "description": "Map of Boston that shows bike traffic with visualizations and can be filtered by time of day."
+        "url": "https://c-hutchings-norco.github.io/Bike-Map/"
     },
     {
         "title": "Which Major City Consistently has the Highest Hours of Sunshine Across All Seasons?",
