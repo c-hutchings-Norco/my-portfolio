@@ -3,7 +3,7 @@
         "title": "Bike Map",
         "year": "2024",
         "image": "images/BikeMap.jpg",
-        "description": "Map of Boston that shows bike traffic with visualizations and can be filtered by time of day."
+        "description": "Map of Boston that shows bike traffic with visualizations and can be filtered by time of day.",
         "url": "https://c-hutchings-norco.github.io/Bike-Map/"
     },
     {
