@@ -1,5 +1,11 @@
 [
     {
+        "title": "Bike Map",
+        "year": "2024",
+        "image": "images/BikeMap.jpg",
+        "description": "Map of Boston that shows bike traffic with visualizations and can be filtered by time of day."
+    },
+    {
         "title": "Which Major City Consistently has the Highest Hours of Sunshine Across All Seasons?",
         "year": "2024",
         "image": "images/Average.jpg",
@@ -22,12 +28,6 @@
         "year": "2021",
         "image": "images/Suicide Death Rates.jpg",
         "description": "Suicide death rates from 1980 - 2018 for total persons and disaggregated by gender, age, and race."
-    },
-    {
-        "title": "Consectetur lorem ipsum dolor",
-        "year": "2021",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Culpa aspernatur quia repellendus, nemo facilis voluptatem quod labore inventore."
     },
     {
         "title": "Adipisicing elit amet consectetur",
